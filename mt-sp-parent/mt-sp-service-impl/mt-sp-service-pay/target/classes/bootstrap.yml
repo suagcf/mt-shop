@@ -1,0 +1,81 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-member
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+    #      config:
+    #        server-addr: 127.0.0.1:8848
+    #        file-extension: yml
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  profiles:
+    active: prd
+  datasource:
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mayikt-pay?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+  rabbitmq:
+    ####连接地址
+    host: 192.168.75.129
+    ####端口号
+    port: 5672
+    ####账号
+    username: admin
+    ####密码
+    password: admin
+    ### 地址
+    virtual-host: /
+logging:
+  level:
+    ###打印mybatis日志
+    com.mayikt.api.impl.mapper: debug
+server:
+  port: 5000
+seata:
+  enabled: true
+  enable-auto-data-source-proxy: true
+  tx-service-group: my_test_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      namespace: f58970cb-79fb-437c-a029-496aa43ded1e
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    disable-global-transaction: false
+  client:
+    rm:
+      report-success-enable: false
+    undo:
+      data-validation: false
+###模拟演示死信队列
+mayikt:
+  dlx:
+    exchange: mayikt_dlx_exchange
+    queue: mayikt_order_dlx_queue
+    routingKey: dlx
+  ###备胎交换机
+  order:
+    exchange: mayikt_order_exchange
+    queue: mayikt_order_queue
+    routingKey: mayikt.order

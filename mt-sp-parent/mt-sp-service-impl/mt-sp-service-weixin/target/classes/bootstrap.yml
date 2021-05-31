@@ -1,0 +1,47 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-weixin
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+  datasource:
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mayikt_weChat?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  kafka:
+    bootstrap-servers: 192.168.75.129:9092 #指定kafka server的地址，集群配多个，中间，逗号隔开
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: default_consumer_group #群组ID
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+server:
+  port: 9000
+wx:
+  mp:
+    configs:
+      - appId: wx5c43fde3c9733d9e
+        secret: b8b217126c33a5fb7074927d5e72a81a
+        token: mayikt
+mayikt:
+  wx:
+    defaultMsg: 您的消息我已经收到了，后期会给您回复的噢!
+    weatherUrl: http
+  member:
+    weixin:
+      login:
+        templateId: LHZjvB98nff9exSCraHjAjA94HCwixWTfatQAzfo5bA
+

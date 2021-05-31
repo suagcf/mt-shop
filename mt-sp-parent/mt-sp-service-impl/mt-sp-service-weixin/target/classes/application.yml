@@ -1,0 +1,17 @@
+#spring:
+#  application:
+#    ###服务的名称
+#    name: mayikt-weixin
+#  cloud:
+#    nacos:
+#      discovery:
+#        ###nacos注册地址
+#        server-addr: 127.0.0.1:8848
+#server:
+#  port: 9000
+#wx:
+#  mp:
+#    configs:
+#      - appId: wx5c43fde3c9733d9e
+#        secret: b8b217126c33a5fb7074927d5e72a81a
+#        token: mayikt

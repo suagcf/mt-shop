@@ -1,0 +1,37 @@
+server:
+  port: 81
+####服务网关名称
+spring:
+  application:
+    name: mayikt-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          ####开启以服务id去注册中心上获取转发地址
+          enabled: true
+        ###路由策略
+      routes:
+        ###路由id
+        - id: mayikt
+          ####转发http://www.mayikt.com/
+          uri: http://www.baidu.com/
+          ###匹配规则
+          predicates:
+            - Path=/mayikt/**
+        ###路由id
+        - id: spike
+          #### 基于lb负载均衡形式转发
+          uri: lb://mayikt-spike
+          filters:
+            - StripPrefix=1
+          ###匹配规则
+          predicates:
+            - Path=/mayikt-spike/**
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard:  192.168.75.129:8858

@@ -1,0 +1,41 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-member-mqconsumer
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  profiles:
+    active: prd
+  rabbitmq:
+    ####连接地址
+    host: 192.168.163.129
+    ####端口号
+    port: 5672
+    ####账号
+    username: admin
+    ####密码
+    password: admin
+    ### 地址
+    virtual-host: /
+logging:
+  level:
+    ###打印mybatis日志
+    com.mayikt.api.impl.mapper : debug
+server:
+  port: 10000
+mayikt:
+  userName: mayikt
+  thread:
+    corePoolSize: 10
+    maxPoolSize: 10
+    queueCapacity: 20
+    keepAlive: 60

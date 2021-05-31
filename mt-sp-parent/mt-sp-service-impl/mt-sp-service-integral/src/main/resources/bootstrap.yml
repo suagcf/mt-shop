@@ -1,0 +1,55 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-integral
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  profiles:
+    active: prd
+  datasource:
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mayikt-integral?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+logging:
+  level:
+    ###打印mybatis日志
+    com.mayikt.api.impl.mapper : debug
+server:
+  port: 6000
+
+seata:
+  enabled: true
+  enable-auto-data-source-proxy: true
+  tx-service-group: my_test_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      namespace: f58970cb-79fb-437c-a029-496aa43ded1e
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    disable-global-transaction: false
+  client:
+    rm:
+      report-success-enable: false

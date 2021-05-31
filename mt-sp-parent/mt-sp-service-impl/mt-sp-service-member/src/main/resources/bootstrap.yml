@@ -1,0 +1,76 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-member
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  profiles:
+    active: prd
+#  datasource:
+#    password: root
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/mayikt-member?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+#    username: root
+  rabbitmq:
+    ####连接地址
+    host: 192.168.163.129
+    ####端口号
+    port: 5672
+    ####账号
+    username: admin
+    ####密码
+    password: admin
+    ### 地址
+    virtual-host: /
+  main:
+    allow-bean-definition-overriding: true
+logging:
+  level:
+    ###打印mybatis日志
+    com.mayikt.api.impl.mapper : debug
+server:
+  port: 7000
+mayikt:
+  userName: mayikt
+  thread:
+    corePoolSize: 10
+    maxPoolSize: 10
+    queueCapacity: 20
+    keepAlive: 60
+# 数据源 mayiktdb
+# 数据源 mayiktdb
+sharding:
+  jdbc:
+    datasource:
+      names: mayikt-member
+      # 第一个数据库
+      mayikt-member:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/mayikt-member?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+        username: root
+        password: root
+    # 水平拆分的数据库（表） 配置分库 + 分表策略 行表达式分片策略
+    config:
+      sharding:
+        tables:
+          meite_user:
+            actual-data-nodes: mayikt-member.meite_user$->{1..3}
+            table-strategy:
+              standard:
+                ### where userId
+                precise-algorithm-class-name: com.mayikt.api.impl.config.MayiktPreciseShardingAlgorithm
+                sharding-column: user_id
+      # 打印执行的数据库
+      props:
+        sql:
+          show: true

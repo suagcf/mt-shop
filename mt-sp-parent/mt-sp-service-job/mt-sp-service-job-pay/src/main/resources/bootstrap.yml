@@ -1,0 +1,23 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-apppayjob
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+server:
+  port: 1002
+xxl:
+  job:
+    accessToken: ''
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    executor:
+      address: ''
+      appname: mayikt-apppayjob
+      ip: ''
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+      port: 9999

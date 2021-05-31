@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: mayikt-integral
+  datasource:
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mayikt-integral?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+  rabbitmq:
+    ####连接地址
+    host: 127.0.0.1
+    ####端口号
+    port: 5672
+    ####账号
+    username: guest
+    ####密码
+    password: guest
+    ### 地址
+    virtual-host: /
+    listener:
+      direct:
+        retry:
+          ## 是否开启重试 消费者重试
+          enabled: true
+          ##重试次数，默认为 3 次
+          max-attempts: 5
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+##
+server:
+  port: 2000

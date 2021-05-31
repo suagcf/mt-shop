@@ -1,0 +1,32 @@
+# kafka
+spring:
+  kafka:
+    # kafka服务器地址(可以多个)
+    bootstrap-servers: 192.168.75.129:9092
+    consumer:
+      # 指定一个默认的组名
+      group-id: kafka2
+      # earliest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
+      # latest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，消费新产生的该分区下的数据
+      # none:topic各分区都存在已提交的offset时，从offset后开始消费；只要有一个分区不存在已提交的offset，则抛出异常
+      auto-offset-reset: earliest
+      # key/value的反序列化
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+    producer:
+      # key/value的序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 批量抓取
+      batch-size: 65536
+      # 缓存容量
+      buffer-memory: 524288
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      cluster-name: docker-cluster
+      cluster-nodes: 192.168.75.129:9300
+server:
+  port: 8085

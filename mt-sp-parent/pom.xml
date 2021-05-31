@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mayikt</groupId>
+    <artifactId>mt-sp-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>mt-sp-service-api</module>
+        <module>mt-sp-service-api/mt-sp-service-api-weixin</module>
+        <module>mt-sp-service-impl</module>
+        <module>mt-sp-service-api/mt-sp-service-api-member</module>
+        <module>mt-sp-service-base</module>
+        <module>mt-sp-service-mq</module>
+        <module>mt-sp-service-mq/mt-sp-service-member-consumer</module>
+        <module>mt-sp-basics</module>
+        <module>mt-sp-basics/mt-sp-basics-gateway</module>
+        <module>mt-sp-web</module>
+        <module>mt-sp-service-impl/mt-sp-service-pay</module>
+        <module>mt-sp-service-job</module>
+        <module>mt-sp-canal</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.1.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--  springboot openfeign rpc远程调用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+        <!--  springboot 整合web组件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--  springboot nacos-discovery-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>0.2.2.RELEASE</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

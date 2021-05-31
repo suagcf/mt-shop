@@ -1,0 +1,23 @@
+spring:
+  application:
+    ###服务的名称
+    name: mayikt-member-auth
+  cloud:
+    nacos:
+      discovery:
+        ###nacos注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+server:
+  port: 2000
+
+mayikt:
+  wx:
+    redirectUri: http://127.0.0.1:2000/weChat/wechatOAuth
+    appid: wx5c43fde3c9733d9e
+    secret: b8b217126c33a5fb7074927d5e72a81a
+  vue:
+    #    addres: http://127.0.0.1/bindAccountOpenId
+    addres: http://www.mayikt.com/
